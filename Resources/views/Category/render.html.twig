@@ -1,0 +1,6 @@
+{% extends tpl %}
+
+{% block content_in %}
+	{% include "ACInst3BlogBundle:Category:renderPartial.html.twig" with {'category': category } %}
+	{% include "ACInst3BlogBundle:Post:listPartial.html.twig" with {'posts': category.posts } %}
+{% endblock %}

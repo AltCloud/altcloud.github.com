@@ -1,0 +1,29 @@
+AltCloud\Instance3BlogBundle\Entity\Post:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    title:
+      type: string
+      length: 255
+    teaser:
+      type: string
+      length: 455
+    body:
+      type: text
+    date:
+      type: datetimetz
+  lifecycleCallbacks: {  }
+  manyToOne:
+    category:
+      targetEntity: AltCloud\Instance3BlogBundle\Entity\Category
+    author:
+      targetEntity: AltCloud\JMGenBundle\Entity\User
+    media:
+      targetEntity: AltCloud\Instance3MediaBundle\Entity\Media
+    gallery:
+      targetEntity: AltCloud\Instance3MediaBundle\Entity\Gallery

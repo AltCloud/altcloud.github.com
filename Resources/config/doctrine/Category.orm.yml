@@ -1,0 +1,17 @@
+AltCloud\Instance3BlogBundle\Entity\Category:
+  type: entity
+  table: null
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    title:
+      type: string
+      length: 255
+  lifecycleCallbacks: {  }
+  oneToMany:
+    posts:
+      targetEntity: Post
+      mappedBy: category

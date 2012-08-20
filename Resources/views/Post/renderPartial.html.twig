@@ -1,0 +1,93 @@
+{% if displayoptions.imagemaxheight is defined %}
+	{% set imagemaxheight = displayoptions.imagemaxheight %}	
+{% else %}
+	{% set imagemaxheight = 300 %}	
+{% endif %}
+
+{% if displayoptions.imagemaxwidth is defined %}	
+	{% set imagemaxwidth = displayoptions.imagemaxwidth %}	
+{% else %}
+	{% set imagemaxwidth = 200 %}
+{% endif %}
+
+{% if displayoptions.showauthor is defined %}	
+	{% set showauthor 		= displayoptions.showauthor %}
+{% else %}
+	{% set showauthor 		= true %}
+{% endif %}
+{% if displayoptions.showpubdate is defined %}
+	{% set showpubdate 		= displayoptions.showpubdate %}
+{% else %}
+	{% set showpubdate 		= true %}
+{% endif %}
+{% if displayoptions.showimage is defined %}
+	{% set showimage 		= displayoptions.showimage %}
+{% else %}
+	{% set showimage 		= true %}
+{% endif %}
+{% if displayoptions.showgallery is defined %}
+	{% set showgallery 		= displayoptions.showgallery %}
+{% else %}
+	{% set showgallery 		= true %}
+{% endif %}
+{% if displayoptions.showteaser is defined %}
+	{% set showteaser 		= displayoptions.showteaser %}
+{% else %}
+	{% set showteaser 		= true %}
+{% endif %}
+{% if displayoptions.showbody is defined %}
+	{% set showbody 		= displayoptions.showbody %}
+{% else %}
+	{% set showbody 		= true %}
+{% endif %}
+
+{% if displayoptions.linktitle is defined %}
+	{% set linktitle 		= displayoptions.linktitle %}
+{% else %}
+	{% set linktitle 		= false %}
+{% endif %}
+{% if displayoptions.titletag is defined %}
+	{% set titletag 		= displayoptions.titletag %}
+{% else %}
+	{% set titletag 		= 'h3' %}
+{% endif %}
+
+{% if displayoptions.linkmask is defined %}
+	{% set linkmask = displayoptions.linkmask %}
+{% else %}
+	{% set linkmask = path('post_render', { 'id': 'PLCHLDR' }) %}
+{% endif %}
+
+{% if showimage == true %}
+	{% set postMediaDispOpts = {'formatmaxwidth': imagemaxwidth , 'formatmaxheight': imagemaxheight, 'formatalign': 'left' } %}
+	{% if post.media %}
+		{% include "ACInst3MediaBundle:Format:display.html.twig" with {'format': post.media.thumbnail, 'displayoptions': postMediaDispOpts} %}
+	{% elseif post.gallery %} {% if post.gallery.cover %} {% if post.gallery.cover.thumbnail %}
+		{% include "ACInst3MediaBundle:Format:display.html.twig" with {'format': post.gallery.cover.thumbnail, 'displayoptions': postMediaDispOpts} %}			
+	{% endif %} {% endif %} {% endif %}
+{% endif %}
+
+{% if linktitle == true %}<a href="{{ linkmask|replace({'PLCHLDR': post.id}) }}">{% endif %}
+	<{{titletag}}>{{ post.title }}</{{titletag}}>
+{% if linktitle == true %}</a>{% endif %}
+
+<p>
+	{% if showauthor == true %}<i>{{ post.author.username|title }}</i>{% endif %}
+	{% if showpubdate == true %}({{ post.date|date("d - m - Y") }}){% endif %}
+</p>
+
+{% if showteaser == true %}
+<p>	{{ post.teaser }} </p>
+{% endif %}
+
+{% if showbody == true %}
+	{{ post.body }}
+{% endif %}
+
+{% if showgallery == true %}
+	{% if post.gallery %}
+		{% set postGalleryFormatOpts =  { 'formatmaxwidth': '100','formatmaxheight': '150' } %}
+		{% set postGalleryDispOpts = {'formatoptions': postGalleryFormatOpts, 'rowmax': 5, 'showtitle' : true } %}
+		{% render "ACInst3MediaBundle:Media:matrixPartial" with {'gallery': post.gallery.id, 'displayoptions': postGalleryDispOpts} %}
+	{% endif %}
+{% endif %}

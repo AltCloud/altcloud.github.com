@@ -1,0 +1,80 @@
+{% if displayoptions.postdisplayoptions is defined %}
+	{% set postdisplayoptions = displayoptions.postdisplayoptions %}
+{% else %}
+	{% set postdisplayoptions = false %}
+{% endif %}
+
+{% if postdisplayoptions.imagemaxheight is defined %}
+	{% set postimagemaxheight = postdisplayoptions.imagemaxheight %}	
+{% else %}
+	{% set postimagemaxheight = 80 %}	
+{% endif %}
+{% if postdisplayoptions.imagemaxwidth is defined %}
+	{% set postimagemaxwidth = postdisplayoptions.imagemaxwidth %}	
+{% else %}
+	{% set postimagemaxwidth = 60 %}
+{% endif %}
+
+{% if postdisplayoptions.showbody is defined %}
+	{% set postshowbody = postdisplayoptions.showbody %}
+{% else %}
+	{% set postshowbody = false %}
+{% endif %}
+{% if postdisplayoptions.showauthor is defined %}
+	{% set postshowauthor = postdisplayoptions.showauthor %}
+{% else %}
+	{% set postshowauthor = true %}
+{% endif %}
+{% if postdisplayoptions.showpubdate is defined %}
+	{% set postshowpubdate = postdisplayoptions.showpubdate %}
+{% else %}
+	{% set postshowpubdate = true %}
+{% endif %}
+{% if postdisplayoptions.showimage is defined %}
+	{% set postshowimage = postdisplayoptions.showimage %}
+{% else %}
+	{% set postshowimage = true %}
+{% endif %}
+{% if postdisplayoptions.showgallery is defined %}
+	{% set postshowgallery = postdisplayoptions.showgallery %}
+{% else %}
+	{% set postshowgallery = false %}
+{% endif %}
+{% if postdisplayoptions.showteaser is defined %}
+	{% set postshowteaser = postdisplayoptions.showteaser %}
+{% else %}
+	{% set postshowteaser = true %}
+{% endif %}
+
+{% if postdisplayoptions.linktitle is defined %}
+	{% set postlinktitle = postdisplayoptions.linktitle %}
+{% else %}
+	{% set postlinktitle = true %}
+{% endif %}
+{% if postdisplayoptions.titletag is defined %}
+	{% set posttitletag = postdisplayoptions.titletag %}
+{% else %}
+	{% set posttitletag = 'b' %}
+{% endif %}
+
+{% if postdisplayoptions.linkmask is defined %}
+	{% set postlinkmask = postdisplayoptions.linkmask %}
+{% elseif displayoptions.linkmask is defined %}
+	{% set postlinkmask = displayoptions.linkmask %}
+{% else %}
+	{% set postlinkmask = path('post_render', { 'id': 'PLCHLDR' }) %}
+{% endif %}
+
+{% set postDispOpts = {'showbody': postshowbody, 'linktitle': postlinktitle, 'showauthor': postshowauthor, 'showpubdate': postshowpubdate, 'showimage': postshowimage, 'showteaser': postshowteaser, 'showgallery': postshowgallery, 'titletag': posttitletag, 'imagemaxheight': postimagemaxheight, 'imagemaxwidth': postimagemaxwidth, 'linkmask': postlinkmask } %}
+
+<table class="records_list">
+	<tbody>
+	{% for entity in posts %}
+		<tr>
+			<td>
+				{% include "ACInst3BlogBundle:Post:renderPartial.html.twig" with {'post': entity, 'displayoptions' : postDispOpts} %}
+			</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>

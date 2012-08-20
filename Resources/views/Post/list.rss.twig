@@ -1,0 +1,9 @@
+{% for entity in posts %}
+<item>
+		<title>{{ entity.title }}</title>
+		<description>{{ entity.teaser }}</description>
+		<link>http://presscenter.jeffenmau.com/</link>
+		<guid>jmcomprctr-{{ entity.id }}</guid>
+		<pubDate>{{ entity.date|date("d - m - Y") }}</pubDate>
+</item>
+{% endfor %}

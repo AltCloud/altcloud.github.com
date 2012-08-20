@@ -1,0 +1,13 @@
+<ul id="js-news" class="js-hidden">
+</ul>
+
+<script type="text/javascript">
+    $(function () {
+        $('#js-news').ticker({
+            htmlFeed: false,
+            ajaxFeed: true,
+            feedUrl: '{{ feedurl }}',
+            feedType: 'xml'
+        });
+    });
+</script>

@@ -1,0 +1,25 @@
+ACInst3BlogBundle_admin_post:
+    resource: "@ACInst3BlogBundle/Resources/config/routing/post.yml"
+    prefix:   /admin/post
+
+post_list:
+    pattern:  /post/list/
+    defaults: { _controller: ACInst3BlogBundle:Post:list }
+
+post_list_category:
+    pattern:  /post/category/{category}
+    defaults: { _controller: ACInst3BlogBundle:Post:list, category: false }
+
+post_render:
+    pattern:  /post/{id}
+    defaults: { _controller: ACInst3BlogBundle:Post:render }
+    
+ACInst3BlogBundle_admin_category:
+    resource: "@ACInst3BlogBundle/Resources/config/routing/category.yml"
+    prefix:   /admin/category
+
+category_render:
+    pattern:  /category/{id}.{_format}
+    defaults: { _controller: ACInst3BlogBundle:Category:render, _format: html }
+    requirements:
+        _format:  html|rss

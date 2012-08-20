@@ -1,0 +1,45 @@
+{% extends 'ACInst3Bundle::admin_layout.html.twig' %}
+
+{% block content_in %}
+<h1>Category</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+    </tbody>
+</table>
+
+{% if entity.posts is defined %}
+<ul>
+	{% for post in entity.posts %}
+		<li>{{post.title}}</li>
+	{% endfor %}
+<ul>
+{% endif %}
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_category') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_category_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('admin_category_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

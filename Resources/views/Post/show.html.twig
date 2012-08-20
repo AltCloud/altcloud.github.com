@@ -1,0 +1,65 @@
+{% extends 'ACInst3Bundle::admin_layout.html.twig' %}
+
+{% block content_in %}
+<h1>Post</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+        <tr>
+            <th>Teaser</th>
+            <td>{{ entity.teaser }}</td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>{{ entity.body|raw }}</td>
+        </tr>
+        <tr>
+            <th>Author</th>
+            <td>{{ entity.author.username }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{{ entity.date|date("d - m - Y") }}</td>
+        </tr>
+        {% if entity.media %}
+        <tr>
+            <th>Media</th>
+            <td>{{ entity.media.title|title }}</td>
+        </tr>
+        {% endif %}
+        {% if entity.gallery %}
+        <tr>
+            <th>Gallery</th>
+            <td>{{ entity.gallery.title|title }}</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_post') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_post_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('admin_post_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,7 @@
+parameters:
+#    ac_inst3_blog.example.class: AltCloud\Instance3BlogBundle\Example
+
+services:
+#    ac_inst3_blog.example:
+#        class: %ac_inst3_blog.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
