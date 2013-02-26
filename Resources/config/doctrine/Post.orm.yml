@@ -21,8 +21,6 @@ AltCloud\Instance3BlogBundle\Entity\Post:
   manyToOne:
     category:
       targetEntity: AltCloud\Instance3BlogBundle\Entity\Category
-    author:
-      targetEntity: AltCloud\JMGenBundle\Entity\User
     media:
       targetEntity: AltCloud\Instance3MediaBundle\Entity\Media
     gallery:

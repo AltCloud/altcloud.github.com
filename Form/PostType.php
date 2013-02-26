@@ -3,23 +3,17 @@
 namespace AltCloud\Instance3BlogBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class PostType extends AbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title')
             ->add('teaser')
             ->add('body')
             ->add('date')
-            ->add('author', 'entity', array(
-    								'class' => 'ACJMGenBundle:User',
-    							    'required' => true,
-    								'property' => 'username'	
-									)
-				 )
 			->add('category', 'entity', array(
     								'class' => 'ACInst3BlogBundle:Category',
     							    'required' => true,

@@ -93,4 +93,14 @@ class Category
     {
         return $this->posts;
     }
+
+    /**
+     * Remove posts
+     *
+     * @param \AltCloud\Instance3BlogBundle\Entity\Post $posts
+     */
+    public function removePost(\AltCloud\Instance3BlogBundle\Entity\Post $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
 }
