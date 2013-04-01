@@ -150,31 +150,6 @@ class Post
         return $this->image;
     }
     /**
-     * @var AltCloud\JMGenBundle\Entity\User
-     */
-    private $author;
-
-
-    /**
-     * Set author
-     *
-     * @param AltCloud\JMGenBundle\Entity\User $author
-     */
-    public function setAuthor(\AltCloud\JMGenBundle\Entity\User $author)
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * Get author
-     *
-     * @return AltCloud\JMGenBundle\Entity\User 
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-    /**
      * @var AltCloud\Instance3BlogBundle\Entity\Category
      */
     private $category;
